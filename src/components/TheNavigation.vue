@@ -2,6 +2,7 @@
   <nav class="nav">
     <router-link class="link" to="/">Home</router-link>
     <router-link class="link" to="/about">About</router-link>
+    <router-link class="link" to="/todo">Todo</router-link>
   </nav>
 </template>
 

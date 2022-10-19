@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import ProductCard from "@/components/ProductCard.vue";
+import ProductCard from "@/components/products/ProductCard.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
 import type { Product } from "@/types";

@@ -11,3 +11,10 @@ export interface Product {
   thumbnail: string;
   title: string;
 }
+
+export interface Todo {
+  id: number;
+  name: string;
+  desc: string;
+  isDone: boolean;
+}

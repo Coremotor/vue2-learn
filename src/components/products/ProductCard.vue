@@ -1,21 +1,23 @@
 <template>
-  <router-link :to="{ path: '/products/' + product.id}" class="card">
-    <img class="image" :src="product.thumbnail" alt="product">
+  <router-link :to="{ path: '/products/' + product.id }" class="card">
+    <img class="image" :src="product.thumbnail" alt="product" />
     <span class="title">{{ product.title }}</span>
     <div class="wrapper">
       <span class="price">{{ product.price }} уе</span>
-      <div class="button">В корзину</div>
+      <the-button :title="'В корзину'" />
     </div>
   </router-link>
 </template>
 
 <script lang="ts">
 import { components } from "@/components/names";
+import TheButton from "@/components/UI/TheButton.vue";
 import { defineComponent } from "vue";
 import type { Product } from "@/types";
 
 export default defineComponent({
   name: components.productCard,
+  components: { TheButton },
   props: {
     product: {
       required: true,
@@ -49,10 +51,5 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.button {
-  cursor: pointer;
-  background-color: tomato;
-  padding: 10px;
 }
 </style>

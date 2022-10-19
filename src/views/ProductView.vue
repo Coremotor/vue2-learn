@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import TheProduct from "@/components/TheProduct.vue";
+import TheProduct from "@/components/products/TheProduct.vue";
 import axios from "axios";
 import { defineComponent } from "vue";
 import type { Product } from "@/types";
