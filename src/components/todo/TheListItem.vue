@@ -1,8 +1,13 @@
 <template>
-  <li class="item" @click="onClick" :class="{ active: isActive }">
-    <input class="checkbox" type="checkbox" :checked="todo.isDone" />
+  <li class="item" @click.self="onTodoClick" :class="{ active: isActive }">
+    <input
+      class="checkbox"
+      type="checkbox"
+      :checked="todo.isDone"
+      @change="onTodoChange($event)"
+    />
     <span class="name">{{ todo.name }}</span>
-    <button class="button">Delete</button>
+    <button class="button" @click="onDeleteClick">Delete</button>
   </li>
 </template>
 
@@ -24,8 +29,15 @@ export default defineComponent({
     },
   },
   methods: {
-    onClick() {
+    onTodoClick() {
       this.$emit("setActiveTodo");
+    },
+    onDeleteClick() {
+      this.$emit("deleteTodo");
+    },
+    onTodoChange(event: Event) {
+      const checked = (event.target as HTMLInputElement).checked;
+      this.$emit("changeTodo", this.todo.id, checked);
     },
   },
 });

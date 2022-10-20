@@ -2,6 +2,7 @@
   <header class="header">
     <div>LOGO</div>
     <the-navigation />
+    <div class="cart">{{ cart.length }}</div>
   </header>
 </template>
 
@@ -12,6 +13,11 @@ export default {
   name: components.header,
   components: {
     TheNavigation,
+  },
+  computed: {
+    cart() {
+      return this.$store.getters["products/getCart"];
+    },
   },
 };
 </script>

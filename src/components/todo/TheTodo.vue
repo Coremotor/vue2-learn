@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
-    <span>{{ activeTodo?.name || "" }}</span>
+  <div class="todo">
+    <span>Id: {{ activeTodo?.id || "" }}</span>
+    <span>Name: {{ activeTodo?.name || "" }}</span>
+    <span>Desc: {{ activeTodo?.desc || "" }}</span>
   </div>
 </template>
 
@@ -21,8 +23,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container {
+.todo {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   padding: 10px;
+}
+span:not(:last-child) {
+  margin-bottom: 10px;
 }
 </style>

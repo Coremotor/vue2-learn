@@ -12,33 +12,20 @@
 
 <script lang="ts">
 import ProductCard from "@/components/products/ProductCard.vue";
-import axios from "axios";
 import { defineComponent } from "vue";
-import type { Product } from "@/types";
 
 export default defineComponent({
   components: { ProductCard },
-  data: () => ({
-    isLoading: false,
-    products: [] as Product[],
-  }),
-  mounted() {
-    this.fetchProducts();
-  },
-  methods: {
-    async fetchProducts() {
-      this.isLoading = true;
-      try {
-        const response = await axios.get(
-          "https://dummyjson.com/products?limit=20"
-        );
-        this.products = response.data.products;
-      } catch (e) {
-        console.log(e);
-      } finally {
-        this.isLoading = false;
-      }
+  computed: {
+    products() {
+      return this.$store.getters["products/getProducts"];
     },
+    isLoading() {
+      return this.$store.getters["products/getIsLoading"];
+    },
+  },
+  mounted() {
+    this.$store.dispatch("products/fetchProducts");
   },
 });
 </script>

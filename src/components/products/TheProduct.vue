@@ -17,7 +17,11 @@
         </ul>
       </div>
     </div>
-    <the-button :title="'В корзину'" class="button" />
+    <the-button
+      :title="'В корзину'"
+      class="button"
+      @onButtonClick="addInCart"
+    />
 
     <div class="go-back" @click="goBack">go back</div>
   </div>
@@ -50,6 +54,9 @@ export default defineComponent({
   methods: {
     goBack() {
       this.$router.back();
+    },
+    addInCart() {
+      this.$store.dispatch("products/addInCart", { product: this.product });
     },
   },
 });

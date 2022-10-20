@@ -1,10 +1,10 @@
 <template>
   <form class="form" @submit.prevent="onSubmit">
     <span>Name</span>
-    <input class="input" name="name" type="text" />
+    <input v-model="name" class="input" name="name" type="text" />
 
     <span>Description</span>
-    <textarea class="textarea" name="desc" />
+    <textarea v-model="desc" class="textarea" name="desc" />
 
     <button class="button">Add</button>
   </form>
@@ -12,15 +12,28 @@
 
 <script>
 import { todoComponentsNames } from "@/components/todo/todoComponentsNames";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: todoComponentsNames.form,
+  data: () => ({
+    name: "",
+    desc: "",
+  }),
   methods: {
     onSubmit() {
-      console.log("submit");
+      if (!this.name || !this.desc) return;
+      this.$emit("addTodo", {
+        id: Date.now(),
+        name: this.name,
+        desc: this.desc,
+        isDone: false,
+      });
+      this.name = "";
+      this.desc = "";
     },
   },
-};
+});
 </script>
 
 <style scoped>

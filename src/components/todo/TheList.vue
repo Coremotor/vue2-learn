@@ -4,8 +4,10 @@
       v-for="todo in list"
       :key="todo.id"
       :todo="todo"
-      @setActiveTodo="setActiveTodo(todo)"
       :isActive="isActive(todo.id)"
+      @setActiveTodo="setActiveTodo(todo)"
+      @deleteTodo="deleteTodo(todo.id)"
+      @changeTodo="changeTodo"
     />
   </ul>
 </template>
@@ -38,6 +40,12 @@ export default defineComponent({
     },
     isActive(todoId: number) {
       return this.activeTodo?.id === todoId;
+    },
+    deleteTodo(id: number) {
+      this.$emit("deleteTodo", id);
+    },
+    changeTodo(id: number, checked: boolean) {
+      this.$emit("changeTodo", id, checked);
     },
   },
 });

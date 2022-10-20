@@ -1,12 +1,12 @@
 <template>
-  <router-link :to="{ path: '/products/' + product.id }" class="card">
+  <div class="card" @click.stop="goToProduct">
     <img class="image" :src="product.thumbnail" alt="product" />
     <span class="title">{{ product.title }}</span>
     <div class="wrapper">
       <span class="price">{{ product.price }} уе</span>
-      <the-button :title="'В корзину'" />
+      <the-button :title="'В корзину'" @onButtonClick="onButtonClick" />
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script lang="ts">
@@ -24,6 +24,14 @@ export default defineComponent({
       type: Object as () => Product,
     },
   },
+  methods: {
+    onButtonClick() {
+      this.$store.dispatch("products/addInCart", { product: this.product });
+    },
+    goToProduct() {
+      this.$router.push(`/products/${this.product.id}`);
+    },
+  },
 });
 </script>
 
@@ -36,6 +44,7 @@ export default defineComponent({
   border: 1px solid darkblue;
   text-decoration: none;
   color: black;
+  cursor: pointer;
   padding: 10px;
 }
 .image {

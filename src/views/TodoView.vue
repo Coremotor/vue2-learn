@@ -4,9 +4,11 @@
       :list="todos"
       :activeTodo="activeTodo"
       @setActiveTodo="setActiveTodo"
+      @deleteTodo="deleteTodo"
+      @changeTodo="changeTodo"
     />
     <div class="wrapper">
-      <the-form />
+      <the-form @addTodo="addTodo" />
       <the-todo v-show="activeTodo" :activeTodo="activeTodo" />
     </div>
   </div>
@@ -38,12 +40,33 @@ export default defineComponent({
     setActiveTodo(todo: Todo) {
       this.activeTodo = todo;
     },
+    addTodo(todo: Todo) {
+      this.todos.push(todo);
+    },
+    deleteTodo(id: number) {
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+      if (id === this.activeTodo?.id) {
+        this.activeTodo = null;
+      }
+    },
+    changeTodo(id: number, checked: boolean) {
+      this.todos = this.todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            isDone: checked,
+          };
+        }
+        return todo;
+      });
+    },
   },
 });
 </script>
 
 <style scoped>
 .container {
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
