@@ -56,7 +56,7 @@ export default defineComponent({
       this.$router.back();
     },
     addInCart() {
-      this.$store.dispatch("products/addInCart", { product: this.product });
+      this.$store.dispatch("products/addInCart", this.product);
     },
   },
 });

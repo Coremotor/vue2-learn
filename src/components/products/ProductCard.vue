@@ -26,7 +26,7 @@ export default defineComponent({
   },
   methods: {
     onButtonClick() {
-      this.$store.dispatch("products/addInCart", { product: this.product });
+      this.$store.dispatch("products/addInCart", this.product);
     },
     goToProduct() {
       this.$router.push(`/products/${this.product.id}`);

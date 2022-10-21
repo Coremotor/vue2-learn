@@ -4,4 +4,5 @@ export const components = {
   nav: "TheNavigation",
   productCard: "ProductCard",
   product: "TheProduct",
+  cart: "TheCart",
 };

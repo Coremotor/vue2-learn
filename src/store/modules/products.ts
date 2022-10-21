@@ -41,7 +41,16 @@ const actions = {
     }
   },
   addInCart(ctx: any, payload: Product) {
-    ctx.commit("setCart", payload);
+    const cart = ctx.getters.getCart;
+    if (cart.includes(payload)) return;
+
+    const arr = [...cart, payload]
+    ctx.commit("setCart", arr);
+  },
+  removeFromCart(ctx: any, payload: Product) {
+    const cart = ctx.getters.getCart;
+    const arr = cart.filter((product: Product) => product.id != payload.id);
+    ctx.commit("setCart", arr);
   },
 };
 
@@ -52,8 +61,8 @@ const mutations = {
   setIsLoading(state: State, isLoading: boolean) {
     state.isLoading = isLoading;
   },
-  setCart(state: State, product: Product) {
-    state.cart = [...state.cart, product];
+  setCart(state: State, products: Product[]) {
+    state.cart = products;
   },
 };
 

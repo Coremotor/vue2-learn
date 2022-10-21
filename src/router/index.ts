@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ProductView from "../views/ProductView.vue";
 import TodoView from "../views/TodoView.vue";
+import CartView from "../views/CartView.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const router = new VueRouter({
       path: "/todo",
       name: "todo",
       component: TodoView,
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: CartView,
     },
     {
       path: "/about",

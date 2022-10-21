@@ -2,7 +2,7 @@
   <header class="header">
     <div>LOGO</div>
     <the-navigation />
-    <div class="cart">{{ cart.length }}</div>
+    <router-link to="/cart/" class="cart">Cart {{ cart.length }}</router-link>
   </header>
 </template>
 
